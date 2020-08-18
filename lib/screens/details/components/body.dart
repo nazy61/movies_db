@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+import 'cast_andcrew.dart';
+import 'genres.dart';
+import 'title_duration_fab_btn.dart';
 import '../../../models/movie.dart';
 import 'backdrop_rating.dart';
 
@@ -11,10 +15,34 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        BackdropAndRating(size: size, movie: movie),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BackdropAndRating(size: size, movie: movie),
+          SizedBox(height: kDefaultPadding / 2),
+          TitleDurationAndFabButton(movie: movie),
+          Genres(movie: movie),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: kDefaultPadding / 2,
+              horizontal: kDefaultPadding,
+            ),
+            child: Text(
+              'Plot Summary',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Text(
+              movie.plot,
+              style: TextStyle(color: Color(0xFF737599)),
+            ),
+          ),
+          CastAndCrew(casts: movie.cast),
+        ],
+      ),
     );
   }
 }
