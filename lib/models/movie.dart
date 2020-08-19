@@ -3,8 +3,7 @@ import 'package:flutter/foundation.dart';
 // Our movie model
 class Movie {
   final dynamic id, numOfRatings, rating, metascoreRating;
-  final List<String> genra;
-  final String plot, title, poster, backdrop, year;
+  final String plot, title, poster, backdrop, year, genraUrl;
 
   Movie({
     @required this.poster,
@@ -15,7 +14,7 @@ class Movie {
     @required this.numOfRatings,
     @required this.metascoreRating,
     @required this.rating,
-    @required this.genra,
+    @required this.genraUrl,
     @required this.plot,
   });
 }

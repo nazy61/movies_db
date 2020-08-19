@@ -27,13 +27,13 @@ class _BodyState extends State<Body> {
     super.initState();
     if (_initialStart) {
       Future.delayed(Duration.zero, () {
-        getMovies(context, genreUrl);
+        getMovies(context);
       });
       _initialStart = false;
     }
   }
 
-  void getMovies(BuildContext context, String url) {
+  void getMovies(BuildContext context) {
     final movieCubit = context.bloc<MoviedbCubit>();
     movieCubit.getMovies(movieUrl, genreUrl);
   }
@@ -42,23 +42,23 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return BlocBuilder<MoviedbCubit, MoviedbState>(builder: (context, state) {
       if (state is MoviedbInitial) {
-        return _buildInitialInput();
+        return _buildLoading();
       } else if (state is MoviedbLoading) {
         return _buildLoading();
       } else if (state is MoviedbLoaded) {
         return _buildBody(state.movies);
       } else {
         // (state is WeatherError)
-        return _buildInitialInput();
+        return _buildErrorScreen();
       }
     });
   }
 
-  Widget _buildInitialInput() {
+  Widget _buildErrorScreen() {
     return Container(
       child: Center(
         child: Text(
-          'No Data',
+          'Unable to Get Movies',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

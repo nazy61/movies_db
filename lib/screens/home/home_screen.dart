@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../cubit/moviedb_cubit.dart';
-import '../../services/movie/movie_services.dart';
+import '../../services/movie_services.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 

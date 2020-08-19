@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:movie_info_app/models/genre.dart';
 
-import '../../constants.dart';
-import '../../models/movie.dart';
+import '../constants.dart';
+import '../models/movie.dart';
 
 abstract class MovieDBService {
   Future<List<Movie>> fetchMovies(String movieUrl, String genreUrl);
+  Future<List<Genre>> fetchGenres(String url);
+  Future<List<String>> fetchMovieGenres(String url);
 }
 
 class MovieDBRepository implements MovieDBService {
@@ -24,12 +26,10 @@ class MovieDBRepository implements MovieDBService {
         String movieGenreUrl =
             'https://api.themoviedb.org/3/movie/${data[i]['id']}?api_key=${apiKey}&language=en-US';
 
-        var movieGenra = await fetchMovieGenres(movieGenreUrl);
-
         Movie movie = Movie(
           id: data[i]['id'],
           backdrop: backdropUrl,
-          genra: movieGenra,
+          genraUrl: movieGenreUrl,
           metascoreRating: data[i]['popularity'],
           numOfRatings: data[i]['vote_count'],
           plot: data[i]['overview'],

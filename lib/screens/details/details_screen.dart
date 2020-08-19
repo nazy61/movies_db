@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_info_app/cubit/moviegenra_cubit.dart';
+import 'package:movie_info_app/services/movie_services.dart';
 
 import '../../models/movie.dart';
 import 'components/body.dart';
@@ -10,8 +13,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(
-        movie: movie,
+      body: BlocProvider(
+        create: (context) => MoviegenraCubit(MovieDBRepository()),
+        child: Body(movie: movie),
       ),
     );
   }

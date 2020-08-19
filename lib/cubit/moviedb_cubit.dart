@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../models/movie.dart';
-import '../services/movie/movie_services.dart';
+import '../services/movie_services.dart';
 
 part 'moviedb_state.dart';
 
