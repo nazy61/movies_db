@@ -11,10 +11,10 @@ class MoviedbCubit extends Cubit<MoviedbState> {
 
   MoviedbCubit(this._movieDBService) : super(MoviedbInitial());
 
-  Future<void> getMovies(String url) async {
+  Future<void> getMovies(String movieUrl, String genreUrl) async {
     try {
       emit(MoviedbLoading());
-      final movies = await _movieDBService.fetchMovies(url);
+      final movies = await _movieDBService.fetchMovies(movieUrl, genreUrl);
       emit(MoviedbLoaded(movies));
     } catch (e) {
       emit(MoviedbError("Couldn't fetch weather. Is the device online?"));

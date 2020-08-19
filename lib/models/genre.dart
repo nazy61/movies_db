@@ -18,3 +18,5 @@ class Genre {
         "name": name,
       };
 }
+
+List<Genre> genres = [];

@@ -27,7 +27,7 @@ class BackdropAndRating extends StatelessWidget {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(movie.backdrop),
+                image: NetworkImage(movie.backdrop),
               ),
             ),
           ),

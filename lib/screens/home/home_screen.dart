@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../cubit/genre_cubit.dart';
-import '../../services/genre/genre_service.dart';
+import '../../cubit/moviedb_cubit.dart';
+import '../../services/movie/movie_services.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: buildAppBar(),
       body: BlocProvider(
-        create: (context) => GenreCubit(GenreRepository()),
+        create: (context) => MoviedbCubit(MovieDBRepository()),
         child: Body(),
       ),
     );

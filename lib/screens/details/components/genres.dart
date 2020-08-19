@@ -22,7 +22,7 @@ class Genres extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: movie.genra.length,
           itemBuilder: (context, index) => GenreCard(
-            genre: movie.genra[index],
+            genre: movie.genra[index].toString(),
           ),
         ),
       ),

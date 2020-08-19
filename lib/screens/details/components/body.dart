@@ -40,7 +40,7 @@ class Body extends StatelessWidget {
               style: TextStyle(color: Color(0xFF737599)),
             ),
           ),
-          CastAndCrew(casts: movie.cast),
+          CastAndCrew(casts: cast),
         ],
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_info_app/cubit/genre_cubit.dart';
-import 'package:movie_info_app/models/genre.dart';
 
+import '../../../cubit/moviedb_cubit.dart';
+import '../../../models/genre.dart';
+import '../../../models/movie.dart';
 import '../../../constants.dart';
 import 'categories.dart';
 import 'genres.dart';
@@ -15,34 +16,37 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   var _initialStart = true;
-  final String url =
+  final String genreUrl =
       'https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=en-US';
+
+  final String movieUrl =
+      'https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1';
 
   @override
   void initState() {
     super.initState();
     if (_initialStart) {
       Future.delayed(Duration.zero, () {
-        getGenres(context, url);
+        getMovies(context, genreUrl);
       });
       _initialStart = false;
     }
   }
 
-  void getGenres(BuildContext context, String url) {
-    final genreCubit = context.bloc<GenreCubit>();
-    genreCubit.getGenres(url);
+  void getMovies(BuildContext context, String url) {
+    final movieCubit = context.bloc<MoviedbCubit>();
+    movieCubit.getMovies(movieUrl, genreUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenreCubit, GenreState>(builder: (context, state) {
-      if (state is GenreInitial) {
+    return BlocBuilder<MoviedbCubit, MoviedbState>(builder: (context, state) {
+      if (state is MoviedbInitial) {
         return _buildInitialInput();
-      } else if (state is GenreLoading) {
+      } else if (state is MoviedbLoading) {
         return _buildLoading();
-      } else if (state is GenreLoaded) {
-        return _buildBody(state.genres);
+      } else if (state is MoviedbLoaded) {
+        return _buildBody(state.movies);
       } else {
         // (state is WeatherError)
         return _buildInitialInput();
@@ -69,7 +73,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Widget _buildBody(List<Genre> genres) {
+  Widget _buildBody(List<Movie> movies) {
     return SingleChildScrollView(
       child: Column(
         children: [
