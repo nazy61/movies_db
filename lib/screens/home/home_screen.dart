@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../cubit/genre_cubit.dart';
+import '../../services/genre/genre_service.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
@@ -10,7 +13,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(),
-      body: Body(),
+      body: BlocProvider(
+        create: (context) => GenreCubit(GenreRepository()),
+        child: Body(),
+      ),
     );
   }
 

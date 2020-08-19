@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 // Our movie model
 class Movie {
   final int id, year, numOfRatings, criticsReview, metascoreRating;
@@ -7,18 +9,18 @@ class Movie {
   final List<Map> cast;
 
   Movie({
-    this.poster,
-    this.backdrop,
-    this.title,
-    this.id,
-    this.year,
-    this.numOfRatings,
-    this.criticsReview,
-    this.metascoreRating,
-    this.rating,
-    this.genra,
-    this.plot,
-    this.cast,
+    @required this.poster,
+    @required this.backdrop,
+    @required this.title,
+    @required this.id,
+    @required this.year,
+    @required this.numOfRatings,
+    @required this.criticsReview,
+    @required this.metascoreRating,
+    @required this.rating,
+    @required this.genra,
+    @required this.plot,
+    @required this.cast,
   });
 }
 
